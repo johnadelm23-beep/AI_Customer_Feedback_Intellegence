@@ -14,10 +14,7 @@ st.set_page_config(
 )
 
 st.title("AI Customer Feedback Intelligence")
-
-st.write(
-    "Enter a customer review and the model will analyze the feedback."
-)
+st.write("Enter a customer review and the model will analyze the feedback.")
 
 base_path = Path(__file__).resolve().parent
 
@@ -33,10 +30,10 @@ except LookupError:
 
 def clean_text(text):
     text = text.lower()
-    text = re.sub(r"[^a-zA-Z\\s]", "", text)
+    text = re.sub(r'[^a-zA-Z\s]', '', text)
     words = text.split()
     words = [word for word in words if word not in stop_words]
-    return " ".join(words)
+    return ' '.join(words)
 
 
 review = st.text_area(
@@ -52,8 +49,8 @@ if st.button("Analyze Review"):
         review_vector = vectorizer.transform([cleaned_review])
 
         prediction = model.predict(review_vector)[0]
-        probability = model.predict_proba(review_vector)[0]
-        confidence = probability.max() * 100
+        probabilities = model.predict_proba(review_vector)[0]
+        confidence = probabilities.max() * 100
 
         if prediction == 1:
             st.success("Recommended")
