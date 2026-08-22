@@ -26,6 +26,10 @@ try:
 except LookupError:
     nltk.download("stopwords")
     stop_words = set(stopwords.words("english"))
+stop_words.discard("not")
+stop_words.discard("no")
+stop_words.discard("nor")
+
 
 
 def clean_text(text):

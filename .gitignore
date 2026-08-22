@@ -20,6 +20,7 @@ Thumbs.db
 
 # Saved Models
 models/*.pkl
+!models/best_model.pkl
 models/*.joblib
 models/*.keras
 models/*.h5
